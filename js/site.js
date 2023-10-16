@@ -1,12 +1,33 @@
-function displayMessage() {
-    // get the text out of our <input> and assign it to a variable 
-    let msg = document.getElementById('message').value;
+function getValues() {
 
-    Swal.fire(
-        {
+    let phrase = document.getElementById('userInput').value;
+
+    if (phrase.length == 0) {
+        Swal.fire ({
+            icon: 'error',
             backdrop: false,
-            title: 'APP NAME',
-            text: msg,  // <-- replace this text with that variable
-        }
-    );    
+            title: 'Oops!',
+            text: 'Please enter a string to reverse'
+    });
+    } else {
+        let palindrome = checkForPalindrome(phrase);
+        displayResults(palindrome);
+    }
+
+}
+
+function checkForPalindrome(phrase) { 
+    let space = phrase ;
+    let noSpace = space.replaceAll('\\s','') ;
+    
+    
+
+    return space;
+
+}
+
+function displayResults (palindrome) {
+    document.getElementById('palindrome').textContent = `Your Phrase is a palindrome: ${palindrome}`;
+    document.getElementById('alert').classList.remove('invisible');
+
 }
