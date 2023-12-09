@@ -21,15 +21,14 @@
     <link rel="stylesheet" href="/css/site.css" />
 
     <!--favicon-->
-    <link rel="shortcut icon" href="/img/Logo to use/Black favicon/favicon ligth.ico" type="image/x-icon" />
-</head>
+    <link rel="shortcut icon" href="/img/Logo/White_Favicon/favicon.ico" type="image/x-icon" /></head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
-                <img src="/img/Logo to use/light_initial.svg" height="35" />
+                <img src="/img/Logo/White_Logo.svg" height="35" />
                 Palindrome
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -76,26 +75,79 @@
             <div class="col-12 col-lg-8">
                 <pre class="line-numbers">
                     <code class="language-js">
-function displayMessage() {
-    // get the text out of our input and assign it to a variable 
-    let msg = document.getElementById('message').value;
+                        function getValues() {
 
-    Swal.fire(
-        {
-            backdrop: false,
-            title: 'Palindrome',
-            text: msg,  // <-- replace this text with that variable
-         }
-    );    
-}
+                            let phrase = document.getElementById('userInput').value;
+                        
+                            if (phrase.length <= 1) {
+                                Swal.fire({
+                                    icon: 'error',
+                                    backdrop: false,
+                                    title: 'Oops!',
+                                    text: 'Please enter a minimum of two character'
+                                });
+                            } else {
+                                let palindrome = checkForPalindrome(phrase);
+                                displayResults(palindrome, phrase);
+                            }
+                        
+                        }
+                        
+                        function checkForPalindrome(phrase) {
+                            let noPun = phrase.replace(/[^a-zA-Z0-9]/g, "");    
+                            let noCap = noPun.toLowerCase();
+                        
+                            let checked = '';
+                            for (let i = noCap.length - 1; i >= 0; i--) {
+                                let reverse = noCap[i];
+                                checked += reverse;
+                            } if (checked == '') {
+                                return '';
+                            } else if (checked == noCap) {
+                                return checked;
+                            } else {
+                                return 'noPali';
+                            }
+                        }
+                        
+                        function displayResults(palindrome, phrase) {
+                            if (palindrome == '') {
+                                document.getElementById('results').innerHTML = `We currently unable to display any punctuation.${palindrome}.`;
+                                document.getElementById('alert').classList.remove('invisible');
+                                document.getElementById('alert').classList.add('alert-warning');
+                                document.getElementById('alert').classList.remove('alert-danger')
+                                document.getElementById('alert').classList.remove('alert-success');
+                        
+                            } else if (palindrome == 'noPali') {
+                                document.getElementById('results').innerHTML = `${phrase}is not a palindrome.`;
+                                document.getElementById('alert').classList.remove('invisible');
+                                document.getElementById('alert').classList.add('alert-danger');
+                                document.getElementById('alert').classList.remove('alert-warning')
+                                document.getElementById('alert').classList.remove('alert-success');
+                        
+                            } else {
+                                document.getElementById('results').innerHTML = `Your palindrome is:${palindrome}.`;
+                                document.getElementById('alert').classList.remove('invisible');
+                                document.getElementById('alert').classList.add('alert-success');
+                                document.getElementById('alert').classList.remove('alert-danger')
+                                document.getElementById('alert').classList.remove('alert-warning');
+                            }
+                        }
                     </code>
                 </pre>
             </div>
             <div class="col-12 col-lg-4">
                 <!-- Explain your code here! -->
-                <p>The code is structured in one function</p>
+                <p>The code is structured in three function</p>
                 <p>
-                    <code>displayMessage</code>displays a SweetAlert when the button is pressed.
+                    <code>getValues</code> collect the user entry from the input.
+                </p>
+                <p>
+                    <code>checkForPalindrome</code> get the user entry from <code>getValues</code>. Next using regex to clean the string into text and number without spacing.
+                    Then compare the string array from front against the back toward middle. Finally return the result to <code>displayResults</code>.
+                </p>
+                <p>
+                    <code>displayResults</code>displays the result from <code>checkForPalindrome</code>.
                 </p>
             </div>
         </div>
@@ -109,12 +161,12 @@ function displayMessage() {
                     &copy; 2023 Hakly Oeng
                 </div>
                 <div class="col text-lg-center">
-                    <img src="/img/Logo to use/light_name.png" height="30" />
+                    <img src="/img/Logo/White_Name.svg" height="30" />
                 </div>
                 <div class="col text-lg-end">
-                    <a href="#"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://github.com/HaklyOeng"><i class="bi bi-github"></i></a>
-                    <a href="#"><i class="bi bi-envelope-at"></i></a>
+                    <a href="https://www.linkedin.com/in/hakly-oeng-b9a9722a1/"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://github.com/HaklyOeng/Palindrome"><i class="bi bi-github"></i></a>
+                    <a href="mailto:helihaung@gmail.com" target="_blank"><i class="bi bi-envelope-at"></i></a>
                 </div>
             </div>
         </div>

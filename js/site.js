@@ -17,9 +17,8 @@ function getValues() {
 }
 
 function checkForPalindrome(phrase) {
-    let noPun = phrase.replace(/[^a-zA-Z0-9]/g, "");
-    let noSpace = noPun.replace(/\s/g, '');
-    let noCap = noSpace.toLowerCase();
+    let noPun = phrase.replace(/[^a-zA-Z0-9]/g, "");    
+    let noCap = noPun.toLowerCase();
 
     let checked = '';
     for (let i = noCap.length - 1; i >= 0; i--) {
@@ -32,7 +31,6 @@ function checkForPalindrome(phrase) {
     } else {
         return 'noPali';
     }
-
 }
 
 function displayResults(palindrome, phrase) {
@@ -60,22 +58,19 @@ function displayResults(palindrome, phrase) {
 }
 
 /*function checkForPalindrome(input) {
-    let checkLeft = '';
-    let checkRight = '';
+    let checked = '';
+  
 
-    for (let l = 0; l < input.length; l++) {
+    for (let l = 0, r = input.length - 1; l < input .length, r >= 0; l++, r--) {
         let left = input[l];
-        checkLeft += left;
-    }
-
-    for (let r = input.length - 1; r >= 0; r--) {
         let Right = input[r];
-        checkRight += Right;
-    }
 
-    if (checkLeft == checkRight) {
-        return true;
-    } else {
-        return false;
+        if (left !== Right) {
+            return false
+        } else {
+            checked += Right;
+        }
     }
-}*/
+    return checked; 
+    
+} */
